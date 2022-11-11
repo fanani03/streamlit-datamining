@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+import sklearn
 from sklearn.neighbors import KNeighborsClassifier
 
 st.title("Aplikasi Penentuan Diabetes dengan KNN")
