@@ -29,8 +29,7 @@ data_baru = [[quality, prescreen, ma2, ma3, ma4, ma5, ma6, ma7,
 
 st.write(inp_pred)
 
-
- if st.button("Tentukan"):
+if st.button("Tentukan"):
     knn = joblib.load("modelKnnNormalisasi.pkl")
     inp_pred = knn.predict(data_baru)
     st.write(inp_pred)
