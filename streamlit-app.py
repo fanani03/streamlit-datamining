@@ -27,7 +27,6 @@ data_baru = [[quality, prescreen, ma2, ma3, ma4, ma5, ma6, ma7,
                 euDist, diameter, amfm_class]]
 
 
-st.write(inp_pred)
 
 if st.button("Tentukan"):
     knn = joblib.load("modelKnnNormalisasi.pkl")
