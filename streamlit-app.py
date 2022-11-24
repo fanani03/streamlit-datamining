@@ -113,8 +113,8 @@ with modelling:
                 scores[k] = metrics.accuracy_score(ytest,y_pred)
                 scores_list.append(metrics.accuracy_score(ytest,y_pred))
         chart_data = pd.DataFrame(
-        np.random.randn(2, 1),
-        columns=['a', 'b', 'c'])
+        np.random.randn(1, 1),
+        columns=['a'])
         st.write(chart_data)
         st.line_chart(chart_data)
    elif model == "Gaussian Naive Bayes":
