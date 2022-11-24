@@ -112,11 +112,8 @@ with modelling:
                 y_pred=knn.predict(xtest)
                 scores[k] = metrics.accuracy_score(ytest,y_pred)
                 scores_list.append(metrics.accuracy_score(ytest,y_pred))
-        chart_data = pd.DataFrame(
-        np.random.randn(20, 1),
-        columns=['a'])
-        st.write(scores_list)
-        st.line_chart(pd.DataFrame(scores_list))
+        st.write("Hasil Pengujian K=1 sampai K=25")
+        st.line_chart(pd.DataFrame(scores_list), x="Nilai K", y="Hasil Akurasi")
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
