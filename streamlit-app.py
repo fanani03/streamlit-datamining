@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd               
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -56,10 +58,30 @@ with preProcessing:
 
    st.header("Normalisasi")
 
+   X = df.drop(columns=['Outcome'])
+   y = df['Outcome'].values
+
+   st.write("Menampilkan semua fitur")
+   st.table(X)
+   st.write("Menampilkan semua label")
+   st.table(y)
+
    normalisasi = st.radio(
     "Silahkan memilih jenis normalisasi",
-    ('MinMax Scaler', 'Standard Scaller'))
-   st.write(normalisasi)
+    ('MinMax Scaler', 'Standard Scaler'))
+   if normalisasi == "MinMax Scaler":
+        scaler1 = MinMaxScaler()
+        scaled = scaler1.fit_transform(X)
+        features_names = X.columns.copy()
+        scaledMinMax_features = pd.DataFrame(scaled, columns=features_names)
+        st.write("Menampilkan semua fitur yang telah dinormalisasi dengan MinMax Scaler")
+        st.write(scaledMinMax_features.head(10))
+   elif normalisasi == "Standard Scaler":
+        scaler2 = StandardScaler()
+        scaledStandard = scaler2.fit_transform(X)
+        st.write("Menampilkan semua fitur yang telah dinormalisasi dengan Standar Scaler")
+        st.write(scaledStandard.head(10))
+
 
 
 with modelling:
