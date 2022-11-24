@@ -16,6 +16,10 @@ with dataSource:
    st.write("Dataset Pima Indians Diabetes")
    df = pd.read_csv('diabetes.csv')
    st.table(df.head(10))
+   st.table(df.tail(5))  
+   st.write(df.dtypes)
+   st.write(df.shape)
+
 
 
 
@@ -25,6 +29,31 @@ with dataSource:
 
 with preProcessing:
    st.header("PREPROCESSING")
+   st.title("Duplikasi Data")
+   duplicate_rows_df = df[df.duplicated()]
+   st.write("Number of duplicate row", duplicate_rows_df)
+
+   st.write("Baris sebelum di hapus data yang duplikat")
+   st.write(df.count())
+
+   df = df.drop_duplicates()
+
+   st.write("Baris setelah di hapus data yang duplikat")
+   st.write(df.count())
+
+   st.title("Missing Value")
+   st.write("Data yang missing value")
+   st.write(df.isnull().sum())
+    #drop mising value
+   df = df.dropna() 
+   st.write("Data setelah dihapus missing value ")
+   st.write(df.count())
+
+
+   st.title("Normalisasi")
+
+
+
 with modelling:
    st.header("MODELLING")
 with implementation:
