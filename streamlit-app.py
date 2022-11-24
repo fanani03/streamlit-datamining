@@ -112,7 +112,11 @@ with modelling:
                 y_pred=knn.predict(xtest)
                 scores[k] = metrics.accuracy_score(ytest,y_pred)
                 scores_list.append(metrics.accuracy_score(ytest,y_pred))
-        st.line_chart(data=[[1,3],[2,3]],x=[1,2,3,4,5,6,7,8,9,10], y=[1,2,3,4,5,6,7,8,9,10])
+        chart_data = pd.DataFrame(
+        np.random.randn(20, 3),
+        columns=['a', 'b', 'c'])
+        st.write(chart_data)
+        st.line_chart(chart_data)
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
