@@ -94,6 +94,19 @@ with preProcessing:
 
 with modelling:
    st.title("MODELLING")
+   model = st.radio("Silahkan memilih jenis Model",('KNN','Gaussian Naive Bayes','Decision Tree'))
+
+   if model == "KNN":
+        st.header("KNN")
+   elif model == "Gaussian Naive Bayes":
+        st.header("Gaussian Naive Bayes")
+   elif model == "Decision Tree":
+        st.header("Decision Tree")
+
+
+
+
+
 with implementation:
    st.title("IMPLEMENTATION")
 
