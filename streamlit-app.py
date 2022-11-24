@@ -12,12 +12,16 @@ st.write("AHMAD FANANI/200411100143/PENAMBANGAN DATA/A")
 dataSource, preProcessing, modelling, implementation = st.tabs(["Data Source", "Preprocessing", "Modelling", "Implementation"])
 
 with dataSource:
-   st.header("DATA SOURCE")
+   st.title("DATA SOURCE")
    st.write("Dataset Pima Indians Diabetes")
    df = pd.read_csv('diabetes.csv')
+   st.write("Menampilkan 10 baris paling atas dari dataset")
    st.table(df.head(10))
-   st.table(df.tail(5))  
+   st.write("Menampilkan 10 baris paling bawah dari dataset")
+   st.table(df.tail(10))  
+   st.write("Menampilkan nama fitur dan tipe data")
    st.write(df.dtypes)
+   st.write("Menampilkan jumlah baris dan kolom")
    st.write(df.shape)
 
 
@@ -28,8 +32,8 @@ with dataSource:
 
 
 with preProcessing:
-   st.header("PREPROCESSING")
-   st.title("Duplikasi Data")
+   st.title("PREPROCESSING")
+   st.header("Duplikasi Data")
    duplicate_rows_df = df[df.duplicated()]
    st.write("Number of duplicate row", duplicate_rows_df)
 
@@ -41,7 +45,7 @@ with preProcessing:
    st.write("Baris setelah di hapus data yang duplikat")
    st.write(df.count())
 
-   st.title("Missing Value")
+   st.header("Missing Value")
    st.write("Data yang missing value")
    st.write(df.isnull().sum())
     #drop mising value
@@ -50,14 +54,18 @@ with preProcessing:
    st.write(df.count())
 
 
-   st.title("Normalisasi")
+   st.header("Normalisasi")
 
+   normalisasi = st.radio(
+    "Silahkan memilih jenis normalisasi",
+    ('MinMax Scaler', 'Standard Scaller'))
+   st.write(normalisasi)
 
 
 with modelling:
-   st.header("MODELLING")
+   st.title("MODELLING")
 with implementation:
-   st.header("IMPLEMENTATION")
+   st.title("IMPLEMENTATION")
 
 
 # quality = st.number_input('Insert a quality')
