@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -116,7 +116,7 @@ with modelling:
         
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
-        st.write(classification_report(ytest,y_pred))
+        st.success("Hasil akurasi tertinggi = ",accuracy_score(ytest,y_pred)*100)
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
