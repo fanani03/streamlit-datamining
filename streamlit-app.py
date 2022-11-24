@@ -121,7 +121,7 @@ with modelling:
         for i in range(1,25):
             if akurasi == scores_list[i]:
                 k=i
-        st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + "Pada Nilai K=" + str(k))
+        st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + " Pada Nilai K = " + str(k))
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
