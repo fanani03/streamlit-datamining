@@ -118,6 +118,7 @@ with modelling:
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
         akurasi = accuracy_score(ytest,y_pred)
+        st.write(scores_list)
         for i in range(1,25):
             if akurasi == scores_list[i]:
                 k=i
