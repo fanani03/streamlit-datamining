@@ -1,4 +1,4 @@
-seaborn
+seaborn==
 pandas
 numpy
-matplotlib.pyplot
+matplotlib.pyplot==22.3.1
