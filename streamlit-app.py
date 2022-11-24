@@ -4,19 +4,6 @@ import sklearn
 # from sklearn.neighbors import KNeighborsClassifier
 
 
-# Using object notation
-add_selectbox = st.sidebar.selectbox(
-    "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
-)
-
-# Using "with" notation
-with st.sidebar:
-    add_radio = st.radio(
-        "Choose a shipping method",
-        ("Standard (5-15 days)", "Express (2-5 days)")
-    )
-
 st.title("Aplikasi DATA MINING")
 
 st.write("AHMAD FANANI/200411100143/PENAMBANGAN DATA/A")
@@ -25,6 +12,12 @@ dataSource, preProcessing, modelling, implementation = st.tabs(["Data Source", "
 
 with dataSource:
    st.header("DATA SOURCE")
+   st.write("Pilih dataset")
+   st.write("Masukkan URL")
+   inpDataset = st.text_input()
+   inpDataset = st.radio(
+    "",
+    ('Pima Indians Datasets'))
 with preProcessing:
    st.header("PREPROCESSING")
 with modelling:
