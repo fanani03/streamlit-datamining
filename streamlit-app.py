@@ -113,7 +113,7 @@ with modelling:
                 y_pred=knn.predict(xtest)
                 scores[k] = metrics.accuracy_score(ytest,y_pred)
                 scores_list.append(metrics.accuracy_score(ytest,y_pred))
-        st.write(scores_list.max())
+        
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
         st.write(classification_report(ytest,y_pred))
