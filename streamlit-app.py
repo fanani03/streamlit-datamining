@@ -90,6 +90,7 @@ with preProcessing:
    else:
         st.write("Menampilkan semua fitur tanpa normalisasi skala")
         st.write(X.head(10))
+        X = X
 
 
 
