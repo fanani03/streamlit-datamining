@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -98,6 +99,20 @@ with modelling:
 
    if model == "KNN":
         st.header("KNN")
+        xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
+        from sklearn.neighbors import KNeighborsClassifier
+        from sklearn import metrics
+        #Membuat k 1 sampai 25
+        k_range = range(1,26)
+        scores = {}
+        scores_list = []
+        for k in k_range:
+                knn = KNeighborsClassifier(n_neighbors=k)
+                knn.fit(xtrain,ytrain)
+                y_pred=knn.predict(xtest)
+                scores[k] = metrics.accuracy_score(ytest,y_pred)
+                scores_list.append(metrics.accuracy_score(ytest,y_pred))
+        st.line_chart(x=k_range, y=scores_list)
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
