@@ -77,20 +77,23 @@ with preProcessing:
         features_names = X.columns.copy()
         scaledMinMax_features = pd.DataFrame(scaled, columns=features_names)
         st.write("Menampilkan semua fitur yang telah dinormalisasi dengan MinMax Scaler")
-        st.write(scaledMinMax_features.head(10))
         X = scaledMinMax_features
+        st.write(X.head(10))
+        
    elif normalisasi == "Standard Scaler":
         scaler = StandardScaler()
         scaled = scaler.fit_transform(X)
         features_names = X.columns.copy()
         scaledStandard_features = pd.DataFrame(scaled, columns=features_names)
         st.write("Menampilkan semua fitur yang telah dinormalisasi dengan Standar Scaler")
-        st.write(scaledStandard_features.head(10))
         X = scaledStandard_features
+        st.write(X.head(10))
+        
    else:
         st.write("Menampilkan semua fitur tanpa normalisasi skala")
-        st.write(X.head(10))
         X = df.drop(columns=['Outcome'])
+        st.write(X.head(10))
+        
 
 
 xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
