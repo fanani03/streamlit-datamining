@@ -115,8 +115,8 @@ with modelling:
         chart_data = pd.DataFrame(
         np.random.randn(20, 1),
         columns=['a'])
-        st.write(chart_data)
-        st.line_chart(chart_data)
+        st.write(scores_list)
+        st.line_chart(pd.DataFrame(scores_list))
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
