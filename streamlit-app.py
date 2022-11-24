@@ -101,7 +101,7 @@ with modelling:
    model = st.radio("Silahkan memilih jenis Model",('KNN','Gaussian Naive Bayes','Decision Tree'))
 
    if model == "KNN":
-        # st.header("KNN")
+        st.header("KNN")
         
         # #Membuat k 1 sampai 25
         # k_range = range(1,26)
@@ -122,7 +122,6 @@ with modelling:
         #     if akurasi1 == scores_list[i]:
         #         k=i
         # st.success("Hasil akurasi tertinggi = " + str(akurasi1*100) + " Pada Nilai K = " + str(k))
-
 
 
    elif model == "Gaussian Naive Bayes":
