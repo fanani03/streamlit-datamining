@@ -5,6 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.naive_bayes import GaussianNB
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -58,7 +59,6 @@ with preProcessing:
 
     # Mengambil semua fitur kecuali label
    X = df.iloc[:,:-1]
-   #    y = df['Outcome'].values
    y = df.iloc[:,-1]
 
    st.write("Menampilkan 10 baris fitur")
@@ -91,6 +91,7 @@ with preProcessing:
         X = df.drop(columns=['Outcome'])
 
 
+xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
 
 
 with modelling:
@@ -99,7 +100,7 @@ with modelling:
 
    if model == "KNN":
         st.header("KNN")
-        xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
+        
         from sklearn.neighbors import KNeighborsClassifier
         from sklearn import metrics
         #Membuat k 1 sampai 25
@@ -121,8 +122,21 @@ with modelling:
             if akurasi == scores_list[i]:
                 k=i
         st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + " Pada Nilai K = " + str(k))
+
+
+
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
+        # GaussianNB
+        clf = GaussianNB()
+        # set training data
+        clf.fit(X,y)
+        #data uji
+        y_pred = clf.predict(xtest)
+        # y_pred
+        akurasi = accuracy_score(ytest,y_pred)
+        st.success("Hasil akurasi = " + str(akurasi*100))
+
    elif model == "Decision Tree":
         st.header("Decision Tree")
 
