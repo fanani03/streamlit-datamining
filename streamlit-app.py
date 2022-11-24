@@ -31,10 +31,6 @@ with dataSource:
 
 
 
-
-
-
-
 with preProcessing:
    st.title("PREPROCESSING")
    st.header("Duplikasi Data")
@@ -60,8 +56,10 @@ with preProcessing:
 
    st.header("Normalisasi")
 
-   X = df.drop(columns=['Outcome'])
-   y = df['Outcome'].values
+    # Mengambil semua fitur kecuali label
+   X = df.iloc[:,:-1]
+   #    y = df['Outcome'].values
+   y = df.iloc[:,-1]
 
    st.write("Menampilkan 10 baris fitur")
    st.table(X.head(10))
