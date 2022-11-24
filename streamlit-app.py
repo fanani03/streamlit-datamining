@@ -105,7 +105,7 @@ with modelling:
         from sklearn.neighbors import KNeighborsClassifier
         from sklearn import metrics
         #Membuat k 1 sampai 25
-        k_range = range(0,25)
+        k_range = range(1,26)
         scores = {}
         scores_list = []
         for k in k_range:
