@@ -68,19 +68,27 @@ with preProcessing:
 
    normalisasi = st.radio(
     "Silahkan memilih jenis normalisasi",
-    ('MinMax Scaler', 'Standard Scaler'))
+    ('Tanpa Normalisasi','MinMax Scaler', 'Standard Scaler'))
    if normalisasi == "MinMax Scaler":
-        scaler1 = MinMaxScaler()
-        scaled = scaler1.fit_transform(X)
+        scaler = MinMaxScaler()
+        scaled = scaler.fit_transform(X)
         features_names = X.columns.copy()
         scaledMinMax_features = pd.DataFrame(scaled, columns=features_names)
         st.write("Menampilkan semua fitur yang telah dinormalisasi dengan MinMax Scaler")
         st.write(scaledMinMax_features.head(10))
+        X = scaledMinMax_features
    elif normalisasi == "Standard Scaler":
-        scaler2 = StandardScaler()
-        scaledStandard = scaler2.fit_transform(X)
+        scaler = StandardScaler()
+        scaled = scaler.fit_transform(X)
+        features_names = X.columns.copy()
+        scaledStandard_features = pd.DataFrame(scaled, columns=features_names)
         st.write("Menampilkan semua fitur yang telah dinormalisasi dengan Standar Scaler")
-        st.write(scaledStandard.head(10))
+        st.write(scaledStandard_features.head(10))
+        X = scaledStandard_features
+   else:
+        st.write("Menampilkan semua fitur tanpa normalisasi skala")
+        st.write(X.head(10))
+
 
 
 
