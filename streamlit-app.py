@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -141,6 +142,13 @@ with modelling:
 
    elif model == "Decision Tree":
         st.header("Decision Tree")
+        d3 = DecisionTreeClassifier()
+
+        #Memasukkan dataset untuk proses training
+        d3.fit(xtrain, ytrain)
+        y_predic = d3.predict(xtest)
+        akurasi10 = accuracy_score(ytest, y_predic)
+        st.success("Hasil akurasi = " + str(akurasi10))
 
 
 
