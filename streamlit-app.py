@@ -134,8 +134,9 @@ with modelling:
         #data uji
         y_pred = clf.predict(xtest)
         # y_pred
+        akurasi3 = 100
         akurasi2 = accuracy_score(ytest,y_pred)
-        st.success("Hasil akurasi = " + str(akurasi2*100))
+        st.success("Hasil akurasi = " + str(akurasi3))
 
    elif model == "Decision Tree":
         st.header("Decision Tree")
