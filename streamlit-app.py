@@ -116,12 +116,12 @@ with modelling:
         
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
-        akurasi = accuracy_score(ytest,y_pred)
+        akurasi1 = accuracy_score(ytest,y_pred)
         
         for i in range(1,25):
-            if akurasi == scores_list[i]:
+            if akurasi1 == scores_list[i]:
                 k=i
-        st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + " Pada Nilai K = " + str(k))
+        st.success("Hasil akurasi tertinggi = " + str(akurasi1*100) + " Pada Nilai K = " + str(k))
 
 
 
@@ -134,8 +134,8 @@ with modelling:
         #data uji
         y_pred = clf.predict(xtest)
         # y_pred
-        akurasi = accuracy_score(ytest,y_pred)
-        st.success("Hasil akurasi = " + str(akurasi*100))
+        akurasi2 = accuracy_score(ytest,y_pred)
+        st.success("Hasil akurasi = " + str(akurasi2*100))
 
    elif model == "Decision Tree":
         st.header("Decision Tree")
