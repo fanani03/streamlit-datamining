@@ -16,7 +16,7 @@ with dataSource:
    st.write("Pilih dataset")
 #    st.write("Masukkan URL")
 #    inpDataset = st.text_input()
-   inpDataset = st.radio("",('Pima Indians Datasets'))
+   inpDataset = st.radio("Pilih dataset",('Pima Indians Datasets'))
    df = pd.read_csv('diabetes.csv')
 
 
