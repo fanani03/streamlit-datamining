@@ -132,9 +132,9 @@ with modelling:
         # set training data
         clf.fit(X,y)
         #data uji
-        y_pred = clf.predict(xtest)
+        y_predNaive = clf.predict(xtest)
         # y_pred
-        akurasi2 = accuracy_score(ytest,y_pred)
+        akurasi2 = accuracy_score(ytest,y_predNaive)
         st.success("Hasil akurasi = " + str(akurasi2))
 
    elif model == "Decision Tree":
