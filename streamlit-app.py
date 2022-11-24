@@ -64,7 +64,7 @@ with preProcessing:
    st.write("Menampilkan 10 baris fitur")
    st.table(X.head(10))
    st.write("Menampilkan 10 baris label")
-   st.table(y.head(10))
+   st.table(y[0:11])
 
    normalisasi = st.radio(
     "Silahkan memilih jenis normalisasi",
