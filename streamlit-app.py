@@ -1,6 +1,10 @@
 import streamlit as st
-import joblib
-import sklearn
+import pandas as pd               
+import numpy as np
+import seaborn as sns                       #visualisation
+import matplotlib.pyplot as plt             #visualisation
+%matplotlib inline     
+sns.set(color_codes=True)
 # from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -13,11 +17,20 @@ dataSource, preProcessing, modelling, implementation = st.tabs(["Data Source", "
 with dataSource:
    st.header("DATA SOURCE")
    st.write("Pilih dataset")
-   st.write("Masukkan URL")
-   inpDataset = st.text_input()
+#    st.write("Masukkan URL")
+#    inpDataset = st.text_input()
    inpDataset = st.radio(
     "",
     ('Pima Indians Datasets'))
+    df = pd.read_csv('diabetes.csv')
+
+
+
+
+
+
+
+
 with preProcessing:
    st.header("PREPROCESSING")
 with modelling:
