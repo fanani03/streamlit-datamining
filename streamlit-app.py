@@ -117,7 +117,11 @@ with modelling:
         
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
-        st.success("Hasil akurasi tertinggi = " + str(accuracy_score(ytest,y_pred)*100))
+        akurasi = accuracy_score(ytest,y_pred)
+        for i in k_range:
+            if akurasi in scores_list[i]:
+                k=i
+        st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + "Pada Nilai K=" + str(k))
    elif model == "Gaussian Naive Bayes":
         st.header("Gaussian Naive Bayes")
    elif model == "Decision Tree":
