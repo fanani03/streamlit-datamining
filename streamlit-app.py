@@ -13,12 +13,9 @@ dataSource, preProcessing, modelling, implementation = st.tabs(["Data Source", "
 
 with dataSource:
    st.header("DATA SOURCE")
-   st.write("Pilih dataset")
-#    st.write("Masukkan URL")
-#    inpDataset = st.text_input()
-   inpDataset = st.radio("Pilih dataset",('Pima Indians Datasets'))
+   st.write("Dataset Pima Indians Diabetes")
    df = pd.read_csv('diabetes.csv')
-
+   st.table(df.head(10))
 
 
 
