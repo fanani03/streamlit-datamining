@@ -61,10 +61,10 @@ with preProcessing:
    X = df.drop(columns=['Outcome'])
    y = df['Outcome'].values
 
-   st.write("Menampilkan semua fitur")
-   st.table(X)
-   st.write("Menampilkan semua label")
-   st.table(y)
+   st.write("Menampilkan 10 baris fitur")
+   st.table(X.head(10))
+   st.write("Menampilkan 10 baris label")
+   st.table(y.head(10))
 
    normalisasi = st.radio(
     "Silahkan memilih jenis normalisasi",
