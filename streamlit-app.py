@@ -107,25 +107,25 @@ with modelling:
    if model == "KNN":
         st.header("KNN")
         
-        # #Membuat k 1 sampai 25
-        # k_range = range(1,26)
-        # scores = {}
-        # scores_list = []
-        # for k in k_range:
-        #         knn = KNeighborsClassifier(n_neighbors=k)
-        #         knn.fit(xtrain,ytrain)
-        #         y_pred=knn.predict(xtest)
-        #         scores[k] = metrics.accuracy_score(ytest,y_pred)
-        #         scores_list.append(metrics.accuracy_score(ytest,y_pred))
+        #Membuat k 1 sampai 25
+        k_range = range(1,26)
+        scores = {}
+        scores_list = []
+        for k in k_range:
+                knn = KNeighborsClassifier(n_neighbors=k)
+                knn.fit(xtrain,ytrain)
+                y_pred=knn.predict(xtest)
+                scores[k] = metrics.accuracy_score(ytest,y_pred)
+                scores_list.append(metrics.accuracy_score(ytest,y_pred))
         
-        # st.write("Hasil Pengujian K=1 sampai K=25")
-        # st.line_chart(pd.DataFrame(scores_list))
-        # akurasi1 = accuracy_score(ytest,y_pred)
+        st.write("Hasil Pengujian K=1 sampai K=25")
+        st.line_chart(pd.DataFrame(scores_list))
+        akurasi1 = accuracy_score(ytest,y_pred)
         
-        # for i in range(1,25):
-        #     if akurasi1 == scores_list[i]:
-        #         k=i
-        # st.success("Hasil akurasi tertinggi = " + str(akurasi1*100) + " Pada Nilai K = " + str(k))
+        for i in range(1,25):
+            if akurasi1 == scores_list[i]:
+                k=i
+        st.success("Hasil akurasi tertinggi = " + str(akurasi1*100) + " Pada Nilai K = " + str(k))
 
 
    elif model == "Gaussian Naive Bayes":
@@ -147,8 +147,8 @@ with modelling:
         #Memasukkan dataset untuk proses training
         d3.fit(xtrain, ytrain)
         y_predic = d3.predict(xtest)
-        akurasi10 = accuracy_score(ytest, y_predic)
-        st.success("Hasil akurasi = " + str(akurasi10))
+        akurasi3 = accuracy_score(ytest, y_predic)
+        st.success("Hasil akurasi = " + str(akurasi3))
 
 
 
