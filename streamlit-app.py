@@ -133,7 +133,7 @@ with modelling:
         # GaussianNB
         clf = GaussianNB()
         # set training data
-        clf.fit(X,y)
+        clf.fit(xtrain,ytrain)
         #data uji
         y_predNaive = clf.predict(xtest)
         # y_pred
