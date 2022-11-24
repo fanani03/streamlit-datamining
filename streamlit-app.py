@@ -118,8 +118,8 @@ with modelling:
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
         akurasi = accuracy_score(ytest,y_pred)
-        for i in k_range:
-            if akurasi in scores_list[i]:
+        for i in range(1,25):
+            if akurasi in scores_list.get(i):
                 k=i
         st.success("Hasil akurasi tertinggi = " + str(akurasi*100) + "Pada Nilai K=" + str(k))
    elif model == "Gaussian Naive Bayes":
