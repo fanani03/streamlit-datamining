@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import metrics
 
 # from sklearn.neighbors import KNeighborsClassifier
 
@@ -101,8 +103,6 @@ with modelling:
    if model == "KNN":
         st.header("KNN")
         
-        from sklearn.neighbors import KNeighborsClassifier
-        from sklearn import metrics
         #Membuat k 1 sampai 25
         k_range = range(1,26)
         scores = {}
