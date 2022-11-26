@@ -101,11 +101,17 @@ xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
 
 
 with modelling:
+   knn = KNeighborsClassifier()
+   clf = GaussianNB()
+   d3 = DecisionTreeClassifier()
+   model = 0
+
    st.title("MODELLING")
    model = st.radio("Silahkan memilih jenis Model",('KNN','Gaussian Naive Bayes','Decision Tree'))
 
    if model == "KNN":
         st.header("KNN")
+        model = 0
         
         #Membuat k 1 sampai 25
         k_range = range(1,26)
@@ -121,14 +127,15 @@ with modelling:
         st.write("Hasil Pengujian K=1 sampai K=25")
         st.line_chart(pd.DataFrame(scores_list))
         akurasi1 = accuracy_score(ytest,y_pred)
-        
+        k=0
         for i in range(1,25):
             if akurasi1 == scores_list[i]:
-                k=i
+               k=i
         st.success("Hasil akurasi tertinggi = " + str(akurasi1*100) + " Pada Nilai K = " + str(k))
 
 
    elif model == "Gaussian Naive Bayes":
+        model = 1
         st.header("Gaussian Naive Bayes")
         # GaussianNB
         clf = GaussianNB()
@@ -141,6 +148,7 @@ with modelling:
         st.success("Hasil akurasi = " + str(akurasi2))
 
    elif model == "Decision Tree":
+        model = 2
         st.header("Decision Tree")
         d3 = DecisionTreeClassifier()
 
@@ -151,11 +159,51 @@ with modelling:
         st.success("Hasil akurasi = " + str(akurasi3))
 
 
-
-
-
 with implementation:
-   st.title("IMPLEMENTATION")
+     st.title("IMPLEMENTATION")
+     st.header("Masukkan Data Baru")
+     pregnancies = st.slider('Pregnancies', 0, 17, 5)
+     glucose = st.slider('glucose', 0, 199, 5)
+     bloodPressure = st.slider('blood Pressure', 0, 122, 5)
+     SkinThickness = st.slider('SkinThickness', 0, 100, 5)
+     insulin = st.slider('insulin', 0, 846, 5)
+     bmi = st.slider('bmi', 0, 68, 5)
+     diabetesPedigreeFunction = st.slider('DiabetesPedigreeFunction', 0.078, 2.42, 0.1)
+     age = st.slider('Pregnancies', 21, 81, 5)
+     st.header("Hasil Prediksi")
+
+     dataBaru = [[pregnancies, glucose, bloodPressure, SkinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
+     dataLabel = ['Sehat', 'Gejala Diabetes']
+     impModel = st.radio("Silahkan memilih jenis Model",('KNN','Gaussian Naive Bayes','Decision Tree'),key = "<uniquevalueofsomesort>")
+     if impModel == 'KNN':
+          if model == 0:
+               knn = KNeighborsClassifier(n_neighbors=k)
+               knn.fit(X,y)
+               y_predict = knn.predict(dataBaru)
+               st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
+          else:
+               st.error("Pilih KNN pada tab Modelling")
+     
+     elif impModel == 'Gaussian Naive Bayes':
+          if model == 1:
+               y_predict = clf.predict(dataBaru)
+               st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
+          else:
+               st.error("Pilih Gaussian Naive Bayes pada tab Modelling")
+     elif impModel == 'Decision Tree':
+          if model == 2:
+               y_predict = d3.predict(dataBaru)
+               st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
+          else:
+               st.error("Pilih Decision Tree pada tab Modelling")
+     
+
+          
+     
+     
+
+
+
 
 
 # quality = st.number_input('Insert a quality')
