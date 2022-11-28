@@ -22,6 +22,11 @@ dataSource, preProcessing, modelling, implementation = st.tabs(["Data Source", "
 with dataSource:
    st.title("DATA SOURCE")
    st.write("Dataset Pima Indians Diabetes")
+   st.write("Dataset publik diambil dari https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database")
+   st.write("Kumpulan data ini berasal dari National Institute of Diabetes and Digestive and Kidney Diseases. Tujuan dari kumpulan data ini adalah untuk memprediksi secara diagnostik apakah seorang pasien menderita diabetes atau tidak, berdasarkan pengukuran diagnostik tertentu yang termasuk dalam kumpulan data. Beberapa batasan ditempatkan pada pemilihan instance ini dari database yang lebih besar. Secara khusus, semua pasien di sini adalah perempuan berusia minimal 21 tahun keturunan India Pima.")
+   st.write("dataset terdiri dar 8 fitur yaitu kehamilan, glukosa, tekanan darah, ketebalan kulit, insulin, BMI dan fungsi silsilah diabetes. Sedangkan 1 fitur untuk hasil gejala")
+
+
    df = pd.read_csv('diabetes.csv')
    st.write("Menampilkan 10 baris paling atas dari dataset")
    st.table(df.head(10))
