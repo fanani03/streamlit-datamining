@@ -102,7 +102,7 @@ with preProcessing:
         
 
 
-xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
+xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=42)
 
 
 with modelling:
