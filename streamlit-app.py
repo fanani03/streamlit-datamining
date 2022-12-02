@@ -36,57 +36,65 @@ with dataSource:
 
 
 with preProcessing:
-
      st.title("PREPROCESSING")
-     st.header("Duplikasi Data")
-     duplicate_rows_df = df[df.duplicated()]
-     st.write("Number of duplicate row", duplicate_rows_df)
 
-     st.write("Baris sebelum di hapus data yang duplikat")
-     st.write(df.count())
-
-     df = df.drop_duplicates()
-
-     st.write("Baris setelah di hapus data yang duplikat")
-     st.write(df.count())
-
-     st.header("Missing Value")
-     st.write("Data yang missing value")
-     st.write(df.isnull().sum())
-     #drop mising value
-     df = df.dropna() 
-     st.write("Data setelah dihapus missing value ")
-     st.write(df.count())
-
-
-     st.header("Normalisasi Dengan MinMax Scaller")
-
-     # Mengambil semua fitur kecuali label
      X = df.drop(columns=['Outcome'])
      y = df['Outcome'].values
+     duplikasiData, missingValue, normalisasi = st.tabs(["Duplikasi Data", "Missing Value", "Normalisasi Data"])
 
-     st.write("Menampilkan 10 baris fitur")
-     st.table(X.head(10))
-     st.write("Menampilkan 10 baris label")
-     st.table(y[0:11])
+     with duplikasiData:
+     
+          st.header("Duplikasi Data")
+          duplicate_rows_df = df[df.duplicated()]
+          st.write("Number of duplicate row", duplicate_rows_df)
+
+          st.write("Baris sebelum di hapus data yang duplikat")
+          st.write(df.count())
+
+          df = df.drop_duplicates()
+
+          st.write("Baris setelah di hapus data yang duplikat")
+          st.write(df.count())
+
+     with missingValue:
+
+          st.header("Missing Value")
+          st.write("Data yang missing value")
+          st.write(df.isnull().sum())
+          #drop mising value
+          df = df.dropna() 
+          st.write("Data setelah dihapus missing value ")
+          st.write(df.count())
+
+     with normalisasi:
+               
+          st.header("Normalisasi Dengan MinMax Scaller")
+
+          # Mengambil semua fitur kecuali label
+
+
+          st.write("Menampilkan 10 baris fitur")
+          st.table(X.head(10))
+          st.write("Menampilkan 10 baris label")
+          st.table(y[0:11])
 
 
 
-     #   ################### Normalisasi####################
-     scaler = MinMaxScaler()
-     scaled = scaler.fit_transform(X)
-     features_names = X.columns.copy()
-     scaledMinMax_features = pd.DataFrame(scaled, columns=features_names)
-     st.write("Menampilkan semua fitur yang telah dinormalisasi dengan MinMax Scaler")
-     X = scaledMinMax_features
-     st.table(X.head(10))
+          #   ################### Normalisasi####################
+          scaler = MinMaxScaler()
+          scaled = scaler.fit_transform(X)
+          features_names = X.columns.copy()
+          scaledMinMax_features = pd.DataFrame(scaled, columns=features_names)
+          st.write("Menampilkan semua fitur yang telah dinormalisasi dengan MinMax Scaler")
+          X = scaledMinMax_features
+          st.table(X.head(10))
 
-     # SAVE NORMALISASI
+          # SAVE NORMALISASI
 
-     filename = "normalisasiMinMax.sav"
-     joblib.dump(scaler, filename) 
+          filename = "normalisasiMinMax.sav"
+          joblib.dump(scaler, filename) 
 
-          
+     
 #==================SPLIT DATA ====================#     
 xtrain,xtest,ytrain,ytest=train_test_split(X,y, test_size=0.2, random_state=0)
 
