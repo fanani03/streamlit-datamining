@@ -9,6 +9,7 @@ from sklearn import metrics
 from sklearn.tree import DecisionTreeClassifier
 import joblib
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.ensemble import BaggingClassifier
 
 st.title("Aplikasi DATA MINING")
 
@@ -145,24 +146,12 @@ with modelling:
      akurasiGaus = accuracy_score(ytest,y_predNaive)
      st.success("Hasil akurasi = " + str(round(akurasiGaus,4)*100) + "%")
 
+
      #SAVE MODEL
 
      filenameModel = 'modelGaussianNB.pkl'
      joblib.dump(knn, filenameModel)
 
-     #SVM
-     st.header("SVM")
-     from sklearn import svm
-     svm = svm.SVC()
-     svm.fit(xtrain,ytrain)
-     y_predSVM = svm.predict(xtest)
-     akurasiSVM = accuracy_score(ytest,y_predSVM)
-     st.success("Hasil akurasi = " + str(round(akurasiSVM,4)*100) + "%")
-
-     #SAVE MODEL
-
-     filenameModel = 'modelSVM.pkl'
-     joblib.dump(knn, filenameModel)
 
      #D3     
      st.header("Decision Tree")
@@ -177,15 +166,30 @@ with modelling:
      filenameModel = 'modelD3.pkl'
      joblib.dump(knn, filenameModel)
 
+
+     #ENSEMBLE BAGGING D3
+
+     st.header("Ensemble Bagging Decision Tree")
+     bag_model = BaggingClassifier(base_estimator=DecisionTreeClassifier(),
+                         n_estimators=100, random_state=0)
+     bag_model.fit(xtrain,ytrain)
+     y_predBag = bag_model.predict(xtest)
+     akurasibag = accuracy_score(ytest,y_predBag)
+     st.success("Hasil akurasi = " + str(round(akurasibag,4)*100) + "%")
+
+     #SAVE MODEL
+
+     filenameModel = 'modelBagD3.pkl'
+     joblib.dump(knn, filenameModel)
      
      all_model = [
                ["KNN", akurasiKNN],
                ["Gaussian Naive Bayes", akurasiGaus],
-               ["Support Vector Machine", akurasiSVM],
+               ["Ensemble Bagging Decision Tree", akurasibag],
                ["Decision Tree", akurasiD3]
                ]
      ind_akurasi = 1
-     model = max(akurasiKNN,akurasiGaus, akurasiSVM,akurasiD3)
+     model = max(akurasiKNN,akurasiGaus,akurasibag,akurasiD3)
      for i in range(4):
           if model == all_model[i][ind_akurasi]:
                model_fit = all_model[i]
@@ -242,15 +246,17 @@ with implementation:
           y_predict = clf.predict(final)
           st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
 
-          #SVM
-          st.header("SVM")
-          svm = joblib.load('modelSVM.pkl')
-          y_predict = svm.predict(final)
-          st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
+
 
           #D3
           st.header("Decision Tree")
           d3 = joblib.load('modelD3.pkl')
           y_predict = d3.predict(final)
+          st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
+
+          #Bagging D3
+          st.header("Ensemble Bagging Decision Tree")
+          bag_model = joblib.load('modelBagD3.pkl')
+          y_predict = bag_model.predict(final)
           st.success("Hasil Prediksi adalah = " + dataLabel[y_predict[0]])
 
