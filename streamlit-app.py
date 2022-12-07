@@ -212,26 +212,20 @@ with implementation:
 
      if st.button('TENTUKAN'):
      
-          dataInput = [pregnancies, glucose, bloodPressure, SkinThickness, insulin, bmi, diabetesPedigreeFunction, age]
+          dataInput = [[pregnancies, glucose, bloodPressure, SkinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
           dataLabel = ['Sehat', 'Gejala Diabetes']
-
-          dataMentah = df.drop(columns=['Outcome'])
-          new = pd.Series(dataInput, index=dataMentah.columns)
-          dataBaru = dataMentah.append(new,ignore_index=True)
 
           #Load normalisasi
 
           scaler = joblib.load('normalisasiMinMax.sav')
-          # scaler = MinMaxScaler()
-          dataNorm = scaler.fit_transform(dataBaru)
-          hasilNorminput = pd.DataFrame(dataNorm)
+          dataNorm = scaler.transform(dataInput)
 
-          final = hasilNorminput.tail(1)
+          final = dataNorm
 
           st.write("Data masukan")
-          st.table(dataBaru.tail(1))
+          st.table(dataInput)
           st.write("Proses Normalisasi dengan menggunakan MinMaxScaller")
-          st.table(hasilNorminput.tail(1))
+          st.table(dataNorm)
           
           #KNN
           st.header("KNN")
